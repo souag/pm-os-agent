@@ -10,7 +10,7 @@ List every discrete decision or action in your agent's workflow, then score each
 
 | Decision / action | Reversibility (H/M/L) | Blast radius (H/M/L) | Measurability (H/M/L) | Above / Below | HITL? |
 |---|---|---|---|---|---|
-| _Pull project state + recent GitHub/Jira activity_ | H | L | H | Below | · |
+| _Pull project state + recent GitHub/Jira activity_ | H | L | H | Below | spot-check |
 | _Draft the weekly leadership status update_ | H | M | M | Below | spot-check |
 | _Propose next sprint's stories from the PRD (within cap)_ | L | M | M | Above | required |
 | _Post the update to a channel / commit a ship date_ | L | H | M | Above | required |
