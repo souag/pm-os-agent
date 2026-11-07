@@ -13,21 +13,27 @@
 
 _Why this type? (e.g. a Monday-morning cron that assembles the weekly update, plus a hook on a new PRD to propose stories.)_
 
+Run this at the beginning of every work week, typically a Monday at 7 AM PT. If Monday is a holiday or I am on PTO, run this on the next work day or when I am back to work. Read my PTO from enterprise timekeeping tool.
+
 ## 2. Goal / definition of done
 
 _What outcome is this loop responsible for? For a goal loop, what validation says "done"? (e.g. a status update grounded in real activity, queued for review, nothing posted.)_
+
+Read updates from last run. Pull updates from Slack, Teams, Jira, GitHub, Confluence and pull project state, draft weekly leadership status update, propose next sprint features/ stories from backlog. Post weekly update to Slack channel and update project milestones and update Jira ticket
 
 ## 3. Stop conditions
 
 | Condition | What it looks like | What happens |
 |---|---|---|
-| **Success** | _…_ | _…_ |
-| **Stuck / give up** | _…_ | _escalate / log / halt_ |
+| **Success** | Able to connect to different systems and pull updates | Updates with high confidence level, ability to trace source when making updates |
+| **Stuck / give up** | Unable to connect to systems like Jira, GitHub, Teams | Notify human to refresh connectors |
 | **Escalate to human** | _…_ | _HITL checkpoint (from agent-line-map)_ |
 
 ## 4. State
 
 _What persists across iterations, and what's the scope? (e.g. per-project context and last week's update; no cross-project confidential leakage.)_
+
+Updates per-project context and last week's update; no cross-project confidential leakage.
 
 ## 5. The five things a loop can lean on
 
