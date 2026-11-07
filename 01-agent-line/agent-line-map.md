@@ -12,7 +12,7 @@ List every discrete decision or action in your agent's workflow, then score each
 |---|---|---|---|---|---|
 | _Pull project state + recent GitHub/Jira activity_ | H | L | H | Below | · |
 | _Draft the weekly leadership status update_ | H | M | M | Below | spot-check |
-| _Propose next sprint's stories from the PRD (within cap)_ | M | M | M | Below | spot-check |
+| _Propose next sprint's stories from the PRD (within cap)_ | L | M | M | Above | required |
 | _Post the update to a channel / commit a ship date_ | L | H | M | Above | required |
 | _Mark a launch gate green / merge or close a ticket_ | L | H | M | Above | required |
 | _…_ | | | | | |
