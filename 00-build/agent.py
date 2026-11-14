@@ -214,6 +214,17 @@ def run(which: str = "happy") -> None:
             marker.touch()
             return
 
+        if verdict.get("jailbreak_failure"):
+            reason = ("validator flagged a jailbreak failure, Cortex did not refuse/"
+                      "escalate an attempted prompt injection. Skipping revision "
+                      "(retrying under the same adversarial input won't help) and "
+                      "escalating immediately.")
+            banner(f"JAILBREAK FAILURE, escalating immediately, no revision attempt. "
+                   f"Run cost ≈ ${bounds.cost:.4f}")
+            emit_deliverable(which, last_draft, accepted=False,
+                             reason=reason, cost=bounds.cost)
+            return
+
         if revisions >= MAX_REVISIONS:
             reason = f"validator rejected {MAX_REVISIONS}x (revision cap)"
             banner(f"REVISION CAP hit ({MAX_REVISIONS}). Escalating to a human "
