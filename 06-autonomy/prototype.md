@@ -6,14 +6,14 @@
 
 ## What it does
 
-_One paragraph: the agent in action, end to end._
+Cortex is a PM chief-of-staff agent that assembles a weekly leadership status update and proposes next-sprint stories for a real project (Northstar/P-NORTH), grounded entirely in pulled data, merged PRs, open issues, activation metrics, past-update precedent, and the roadmap's confidentiality flags. An independent critic validates every draft before a human ever sees it, checking for invented claims, policy violations, and prompt-injection attempts. Every run ends at a human checkpoint: the draft and any proposed stories are queued for review, nothing is ever posted, committed, or merged automatically.
 
 ## How you built it
 
-- **Coding agent:** _which one you directed (Claude Code / Cursor / Codex)_
-- **Model + bounds:** _model used, max iterations, cost cap, queue cap_
-- **Repo / config:** _path to your build in `00-build/`_
-- **Live link:** _[shareable URL, optional bonus]_
+- **Coding agent:** Claude Code
+- **Model + bounds:** `claude-haiku-5-5`; max iterations 8; cost cap $0.50/run ($20/day); revision cap 2; queue cap 10 stories; 100s/call timeout
+- **Repo / config:** `00-build/` (`agent.py`, `critic.py`, `prompts.py`, `tools.py`)
+- **Live link:** none, local script, no hosted deployment
 
 ## Screenshots (required, collected M2 to M6)
 
@@ -26,7 +26,7 @@ Real screenshots of *your* Cortex running. These are the `00-build/CORTEX-ANATOM
 | 3 | see trace below | a grounded update citing pulled activity + a withheld-source refusal | M4 |
 | 4 | see trace below | jailbreak refused + escalated | M5 |
 | 5 | see trace below | an iteration bound halting a runaway before it drafts | M5 |
-| 6 | _[img]_ | end-to-end run | M6 |
+| 6 | see trace below | full end-to-end run: 5 read-only tool calls, 4 stories queued under the 10-item cap, HITL checkpoint reached, nothing posted | M6 |
 
 > No GUI screenshot tool was available when these were captured, so the real terminal
 > traces are embedded verbatim below instead of image files. Swap in actual screenshots
@@ -310,6 +310,37 @@ bound I'd tune next is the iteration cap itself (8 in production): this run show
 2 is clearly too tight for a real brief that needs 5+ tool calls before drafting, so
 the production value needs enough headroom for the normal path while still catching
 a genuinely stuck loop, 8 already does that in every other trace in this file.
+
+### Trace 7 — full end-to-end run (2026-11-21, `claude-haiku-5-5`, M6 capstone)
+
+Reused from an earlier run this session (not re-run, to avoid a duplicate API call for
+identical evidence): a complete happy-path pass, 5 read-only tool calls, 4 stories
+queued under the cap, critic caught a subtle merged-vs-live nuance in the draft and
+flagged it for human review rather than letting it slide, HITL checkpoint reached.
+
+```
+CORTEX RUN, fixture: task-happy
+
+[step 1] TOOL get_project / get_activity / search_past_updates / get_roadmap / get_norms
+[step 2] TOOL propose_stories({...4 stories...}) -> queued_for_approval, count 4
+
+DONE:
+**Leadership status update: Northstar (P-NORTH). Queued for your review, not posted.**
+Status: Green. No open Sev-1, no launch_hold flag. Northstar is shareable.
+> Merged the day-2 milestone email (#820) and empty-state guidance copy (#823,
+  closes #818). Activation moved 41% -> 43% week-over-week. Next: contextual tips
+  A/B, needs an analytics review before readout (#825).
+
+Notes for your check: the roadmap says "now rolling" for those two items, slightly
+stronger than the merge data shows, I wrote "merged," not "live." Confirm before
+the update goes out if you want to say they're live.
+
+Proposed stories (Sprint 25): queued for approval, 4 items under the 10-item cap.
+No confidential items (Orbit, Pulsar) referenced; Vega is internal, not part of this update.
+
+HITL CHECKPOINT. Run cost ~= $0.0046
+Saved draft -> run-output/status-update-happy-20261121T180741Z.md
+```
 
 ## How to run it
 
