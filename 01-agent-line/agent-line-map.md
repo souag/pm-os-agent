@@ -12,7 +12,7 @@ List every discrete decision or action in your agent's workflow, then score each
 |---|---|---|---|---|---|
 | _Pull project state + recent GitHub/Jira activity_ | H | L | H | Below | spot-check |
 | _Draft the weekly leadership status update_ | H | M | M | Below | spot-check |
-| _Propose next sprint's stories from the PRD (within cap)_ | L | M | M | Above | required |
+| _Propose next sprint's stories from the PRD (within cap)_ | H | M | M | Below | spot-check |
 | _Post the update to a channel / commit a ship date_ | L | H | M | Above | required |
 | _Mark a launch gate green / merge or close a ticket_ | L | H | M | Above | required |
 | _…_ | | | | | |
@@ -29,9 +29,8 @@ List every discrete decision or action in your agent's workflow, then score each
 ## The golden rule, applied
 
 _One sentence per above-the-line decision: why it stays human (which of reversibility / blast radius / measurability failed)._
-1. Propose next sprint's stories from the PRD (within cap) - Human owns the call as this work is strategic
-2. Post the update to a channel / commit a ship date - Committing a ship date requires human judgement and should be owned by human
-3. Mark a launch gate green - Again, this is a human decision and needs human in the loop
+1. Post the update to a channel / commit a ship date - Committing a ship date requires human judgement and should be owned by human
+2. Mark a launch gate green - Again, this is a human decision and needs human in the loop
 
 ## Hardest call
 
