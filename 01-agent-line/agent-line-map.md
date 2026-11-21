@@ -29,10 +29,11 @@ List every discrete decision or action in your agent's workflow, then score each
 ## The golden rule, applied
 
 _One sentence per above-the-line decision: why it stays human (which of reversibility / blast radius / measurability failed)._
-_1. Propose next sprint's stories from the PRD (within cap) - Human owns the call as this work is strategic
-_2. Post the update to a channel / commit a ship date - Committing a ship date requires human judgement and should be owned by human
-_3. Mark a launch gate green - Again, this is a human decision and needs human in the loop 
+1. Propose next sprint's stories from the PRD (within cap) - Human owns the call as this work is strategic
+2. Post the update to a channel / commit a ship date - Committing a ship date requires human judgement and should be owned by human
+3. Mark a launch gate green - Again, this is a human decision and needs human in the loop
 
 ## Hardest call
 
 _Your toughest "above vs below" decision and how you resolved it. (Share this in `#cohort-channel`.)_
+Drafting the weekly leadership status update is a close one. Agent hallucination can be expensive and create trust issues. Spot check is the way to reduce the risk and therefore I decided to keep this below the line.
